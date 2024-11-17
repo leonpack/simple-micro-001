@@ -1,0 +1,41 @@
+server:
+  port: 9080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/springcloud?createDatabaseIfNotExist=true
+    username: root
+    password: nathan2709
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    jdbc:
+      dialect: mysql
+  jpa:
+    hibernate:
+      ddl-auto: update
+      properties:
+        hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+        hibernate.show_sql: true
+        hibernate.format_sql: true
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+      micrometer:
+        enabled: true
+
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 5000
+        read-timeout: 5000
+
+resilience4j:
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 5s
+        cancel-running-future: true
+
+

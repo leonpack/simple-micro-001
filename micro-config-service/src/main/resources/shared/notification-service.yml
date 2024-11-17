@@ -1,0 +1,14 @@
+server:
+  port: 9083
+  servlet:
+    context-path: /
+
+spring:
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: animallcomm@gmail.com
+    password: lxtzggaarekketsf
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true

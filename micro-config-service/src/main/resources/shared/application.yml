@@ -1,0 +1,35 @@
+#config for discovery service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9999/eureka/
+  instance:
+    prefer-ip-address: true
+
+#expose all the actuator endpoint for monitoring the server health
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      show-details: always
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+
+logging:
+  level:
+    root: INFO
+  file:
+    name: myapp.log
+  logback:
+    rollingpolicy:
+      max-file-size: 2MB
+  include-application-name: false

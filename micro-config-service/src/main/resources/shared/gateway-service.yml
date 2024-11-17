@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+#spring:
+#  cloud:
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: user-route
+#          uri: lb://account-service
+#          predicates:
+#            - Path=/user/**
+#          filters:
+#            - StripPrefix=1
+#        - id: customer_service
+#          uri: lb://statistic-service
+#          predicates:
+#            - Path=/report/**
+#          filters:
+#            - StripPrefix=1

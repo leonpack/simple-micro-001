@@ -1,0 +1,20 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /
+
+spring:
+  boot:
+    admin:
+      notify:
+        mail:
+          enabled: true
+          to: anonymouszingme@gmail.com
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: animallcomm@gmail.com
+    password: lxtzggaarekketsf
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true

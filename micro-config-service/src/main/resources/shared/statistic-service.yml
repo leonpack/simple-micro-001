@@ -1,0 +1,23 @@
+server:
+  port: 9082
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/springcloud?createDatabaseIfNotExist=true
+    username: root
+    password: nathan2709
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    jdbc:
+      dialect: mysql
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+  cloud:
+    openfeign:
+      micrometer:
+        enabled: true
