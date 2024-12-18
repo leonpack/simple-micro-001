@@ -6,6 +6,7 @@ import com.nathan.accountservice.repository.AccountRepository;
 import com.nathan.accountservice.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +24,8 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void add(AccountDTO accountDTO) {
         Account account = modelMapper.map(accountDTO, Account.class);
-//        account.setPassword(new Bcrypt);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        account.setPassword(passwordEncoder.encode(accountDTO.getPassword()));
         accountRepository.save(account);
         accountDTO.setId(account.getId());
     }

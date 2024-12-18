@@ -5,6 +5,7 @@ import com.nathan.statisticservice.service.StatisticService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class StatisticController {
 
     private final StatisticService statisticService;
 
+    @PreAuthorize("hasAuthority('SCOPE_log')")
     @PostMapping
     public StatisticDTO add(@RequestBody StatisticDTO statisticDTO) {
         logger.info("Add statistic: {}", statisticDTO);
@@ -31,6 +33,7 @@ public class StatisticController {
         return statisticDTO;
     }
 
+    @PreAuthorize("hasAuthority('SCOPE_read') && hasRole('ADMIN')")
     @GetMapping
     public List<StatisticDTO> getAll() {
         logger.info("Get all statistics");

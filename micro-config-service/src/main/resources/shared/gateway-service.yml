@@ -3,6 +3,17 @@ server:
   servlet:
     context-path: /
 
+
+#spring:
+#  cloud:
+#    gateway:
+#      globalcors:
+#        corsConfigurations:
+#          - /**:
+#            allowedOrigins: *
+#            allowedMethods: GET, POST, PUT, DELETE, OPTIONS
+#            allowed-headers: *
+
 #spring:
 #  cloud:
 #    gateway:

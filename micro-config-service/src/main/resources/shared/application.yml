@@ -2,9 +2,18 @@
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:9999/eureka/
+      defaultZone: http://${HOST_IP_ADDRESS}:9999/eureka/
   instance:
     prefer-ip-address: true
+    ip-address: ${HOST_IP_ADDRESS}
+
+resilience4j:
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 10s
+        cancel-running-future: false
+
 
 #expose all the actuator endpoint for monitoring the server health
 management:
@@ -22,7 +31,7 @@ management:
       probability: 1.0
   zipkin:
     tracing:
-      endpoint: http://localhost:9411/api/v2/spans
+      endpoint: http://${HOST_IP_ADDRESS}:9411/api/v2/spans
 
 logging:
   level:
@@ -33,3 +42,19 @@ logging:
     rollingpolicy:
       max-file-size: 2MB
   include-application-name: false
+
+spring:
+  cloud:
+    openfeign:
+      micrometer:
+        enabled: true
+      circuitbreaker:
+        enabled: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          #oauth 2 security
+          issuer-uri: http://${HOST_IP_ADDRESS}:9000
+          #public jwt keys
+          jwk-set-uri: http://${HOST_IP_ADDRESS}:9000/oauth2/jwks

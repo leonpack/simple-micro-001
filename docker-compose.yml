@@ -1,0 +1,52 @@
+version: '3'
+services:
+  configservice:
+    build:
+      context: ../micro-config-service
+      dockerfile: Dockerfile
+    image: configservice:1.0
+    ports:
+      - 8888:8888
+    env_file:
+      - local.env
+  discoveryservice:
+    build:
+      context: ../micro-discovery-service
+      dockerfile: Dockerfile
+    image: discoveryservice:1.0
+    ports:
+      - 9999:9999
+    restart: on-failure
+    env_file:
+      - local.env
+    depends_on:
+      - configservice
+  statisticservice:
+    build:
+      context: ../micro-statistic-service
+      dockerfile: Dockerfile
+    image: statisticservice:1.0
+    ports:
+      - 9082:9082
+    volumes:
+      - D:\userfiles\:/userfiles/
+    restart: on-failure
+    env_file:
+      - local.env
+    depends_on:
+      - configservice
+      - discoveryservice
+      - monitoradmin
+  monitoradmin:
+    build:
+      context: ../micro-monitor-admin
+      dockerfile: Dockerfile
+    image: monitoradmin:1.0
+    ports:
+      - 9001:9001
+    restart: on-failure
+    env_file:
+      - local.env
+    depends_on:
+      - configservice
+

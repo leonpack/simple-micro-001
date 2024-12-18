@@ -17,4 +17,5 @@ public class StatisticServiceImpl implements StatisticService {
         logger.error("Statistic service is unavailable. Falling back to default behavior.");
     }
 
+
 }

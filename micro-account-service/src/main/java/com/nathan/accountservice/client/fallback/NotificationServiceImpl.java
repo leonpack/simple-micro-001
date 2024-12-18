@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class NotificationServiceImpl implements NotificationService {
 
-    Logger logger = LoggerFactory.getLogger(NotificationServiceImpl.class);
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public void sendNotification(MessageDTO messageDTO) {
